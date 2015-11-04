@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
+
 var UserSchema = new mongoose.Schema({
   "username": {
                 type: String,

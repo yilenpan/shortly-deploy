@@ -2,7 +2,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    clean: {
+
+    },
+
     concat: {
+      // TODO: concat
     },
 
     mochaTest: {
@@ -21,11 +27,13 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      // TODO: uglify
     },
 
     jshint: {
       files: [
         // Add filespec list here
+        // find all files inside views
       ],
       options: {
         force: 'true',
@@ -95,6 +103,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    // jshit + concat + uglify
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -106,8 +115,10 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-      // add your production server task here
+    // add your production server task here
   ]);
+
+  // registerTasks
 
 
 };
