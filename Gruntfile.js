@@ -123,7 +123,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean', 'concat', 'uglify', 'cssmin'
+    'clean','jshint','concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) { // grunt upload --prod
