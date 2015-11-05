@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 
     shell: { //TODO: write our shell command here to deploy to azure
       prodServer: {
-        command: 'echo BRAH; git add .; echo ADDED SHIT BRAH; git commit -m "YOLO";echo COMMITED SHIT BRAH; git push azure master'
+        command: 'echo "BRAH"; git add .; echo "ADDED SHIT BRAH"; git commit -m "YOLO";echo "COMMITED SHIT BRAH"; git push azure master'
       }
     },
   });
