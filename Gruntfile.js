@@ -3,12 +3,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: {
-
-    },
+    // TODO: Packages to get, clean, concat, uglify, cssmin
+    clean: ["public/build/*.js"],
 
     concat: {
-      // TODO: concat
+      options: {
+        separator: '\n',
+      },
+      dist: {
+        src: ['public/client/*.js'],
+        dest: 'public/build/dist.js',
+      },
     },
 
     mochaTest: {
@@ -27,12 +32,17 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      // TODO: uglify
+      my_target: {
+        files: {
+          'public/build/dist.js': ['public/build/dist.js']
+        }
+      }
     },
 
     jshint: {
       files: [
         // Add filespec list here
+        'Gruntfile.js', 'public/**/*.js'
         // find all files inside views
       ],
       options: {
@@ -46,7 +56,15 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
-        // Add filespec list here
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: {
+          'public/build/style.min.css': ['public/style.css']
+        }
+      }
     },
 
     watch: {
@@ -66,17 +84,18 @@ module.exports = function(grunt) {
       }
     },
 
-    shell: {
+    shell: { //TODO: write our shell command here to deploy to azure
       prodServer: {
       }
     },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
@@ -103,12 +122,13 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    // jshit + concat + uglify
+    'clean', 'concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
+    if (grunt.option('prod')) {
       // add your production server task here
+      // build
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -116,9 +136,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your production server task here
+    // build, upload
   ]);
 
-  // registerTasks
 
 
 };

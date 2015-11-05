@@ -1,11 +1,6 @@
-<% include partials/backbone_templates %>
 
-<script>
-  $(function(){
-    new Shortly();
-  });
-</script>
-<% if(process.env.NODE_ENV !== 'production') { %>
+<% include partials/backbone_templates %>
+<% if(process.env.NODE_ENV === 'production') { %>
 <script src='/client/app.js'></script>
 <script src='/client/link.js'></script>
 <script src='/client/links.js'></script>
@@ -16,3 +11,9 @@
 <% } else { %>
 <script src='/build/dist.js'></script>
 <% } %>
+<script>
+  $(function(){
+    new Shortly();
+  });
+</script>
+<!--  -->
