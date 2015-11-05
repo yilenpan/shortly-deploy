@@ -128,6 +128,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) { // grunt upload --prod
     if (grunt.option('prod')) {
+      console.log(grunt.option('prod'));
       // add your production server task here
       // build
       grunt.task.run(['shell:prodServer:prod'])
